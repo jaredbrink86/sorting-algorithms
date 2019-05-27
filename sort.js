@@ -93,6 +93,7 @@ const binarySearch = function(arr, elem) {
   }
   return arr[middle] === elem ? middle : -1;
 };
+
 module.exports = {
   sameFrequency,
   areThereDuplicates,
