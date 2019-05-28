@@ -83,21 +83,57 @@ const maxSubarraySum = function(array, n) {
 };
 
 const binarySearch = function(arr, elem) {
+  // declare start and end of search segment starting with beginning and end array
   let start = 0;
   let end = arr.length - 1;
+  // declare middle of array
   let middle = Math.floor((start + end) / 2);
+  // while middle element is not equal to input element
   while (arr[middle] !== elem && start <= end) {
-    if (elem < arr[middle]) end = middle - 1;
-    else start = middle + 1;
+    // if input element is less than middle element, change end to be one before the middle element so search is cut in half
+    // do opposite if element is greater than middle element
+    elem < arr[middle] ? (end = middle - 1) : (start = middle + 1);
+    // reset middle with new start and end variables
     middle = Math.floor((start + end) / 2);
   }
+  // once loop has finished, return true if element was found, false if not found
   return arr[middle] === elem ? middle : -1;
 };
+
+function minSubArrayLen(nums, sum) {
+  let total = 0;
+  let start = 0;
+  let end = 0;
+  let minLen = Infinity;
+
+  while (start < nums.length) {
+    // if total is less than sum and end is less than length of nums array
+    if (total < sum && end < nums.length) {
+      // add element at end index to total
+      total += nums[end];
+      // increment end
+      end++;
+      // if total is greater than or equal to sum
+    } else if (total >= sum) {
+      // if end - start is less than minLen, set minLen to end - start
+      minLen = Math.min(end - start, minLen);
+      // subtract nums array at start index
+      total -= nums[start];
+      // increment start
+      start++;
+    } else {
+      // if total is less than num, but end of array is reached, break
+      break;
+    }
+  }
+  return minLen === Infinity ? 0 : minLen;
+}
 
 module.exports = {
   sameFrequency,
   areThereDuplicates,
   isSubsequence,
   maxSubarraySum,
-  binarySearch
+  binarySearch,
+  minSubArrayLen
 };

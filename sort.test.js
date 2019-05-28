@@ -3,7 +3,8 @@ const {
   areThereDuplicates,
   isSubsequence,
   maxSubarraySum,
-  binarySearch
+  binarySearch,
+  minSubArrayLen
 } = require("./sort.js");
 
 describe("sameFrequency", () => {
@@ -63,6 +64,15 @@ describe("binarySearch", () => {
   });
   test("Should return -1 if the element is not in the array", () => {
     expect(binarySearch([1, 2, 3, 4], 5)).toBe(-1);
+  });
+});
+
+describe("minSubArrayLen", () => {
+  test("Should return the length of the smallest sub array that adds up to or greater than the given sum", () => {
+    expect(minSubArrayLen([2, 3, 1, 2, 4, 3], 7)).toBe(2);
+  });
+  test("Should return 0 if no sub array is greater than or equal to sum", () => {
+    expect(minSubArrayLen([1, 2, 3, 4, 2, 5], 30)).toBe(0);
   });
 });
 
