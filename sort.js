@@ -152,6 +152,29 @@ const bubbleSort = function(arr) {
   return arr;
 };
 
+const selectionSort = function(arr) {
+  let temp;
+  let min;
+  // loop through array length
+  for (let i = 0; i < arr.length; i++) {
+    min = i;
+    // loop through array starting at current index plus 1
+    for (let j = i + 1; j < arr.length; j++) {
+      // if element at j is less than element at minimum, set minimum to j
+      if (arr[j] < arr[min]) min = j;
+    }
+    // if min is no longer element at i
+    if (min !== i) {
+      // swap element at i with minimum
+      temp = arr[i];
+      arr[i] = arr[min];
+      arr[min] = temp;
+    }
+  }
+  // return sorted array
+  return arr;
+};
+
 module.exports = {
   sameFrequency,
   areThereDuplicates,
@@ -159,5 +182,6 @@ module.exports = {
   maxSubarraySum,
   binarySearch,
   minSubArrayLen,
-  bubbleSort
+  bubbleSort,
+  selectionSort
 };

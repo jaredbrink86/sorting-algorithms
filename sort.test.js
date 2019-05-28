@@ -5,7 +5,8 @@ const {
   maxSubarraySum,
   binarySearch,
   minSubArrayLen,
-  bubbleSort
+  bubbleSort,
+  selectionSort
 } = require("./sort.js");
 
 describe("sameFrequency", () => {
@@ -80,6 +81,12 @@ describe("minSubArrayLen", () => {
 describe("bubbleSort", () => {
   test("Should return a sorted array", () => {
     expect(bubbleSort([4, 3, 1, 2, 5, 6])).toStrictEqual([1, 2, 3, 4, 5, 6]);
+  });
+});
+
+describe("selectionSort", () => {
+  test("Should return a sorted array", () => {
+    expect(selectionSort([4, 3, 1, 2, 5, 6])).toStrictEqual([1, 2, 3, 4, 5, 6]);
   });
 });
 
