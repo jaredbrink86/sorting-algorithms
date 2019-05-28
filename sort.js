@@ -37,11 +37,11 @@ const areThereDuplicates = function() {
   return false;
 };
 
-var isSubsequence = function(str1, str2) {
+const isSubsequence = function(str1, str2) {
   // set index of str1 to 0
-  var j = 0;
+  let j = 0;
   // loop through string 2
-  for (var i = 0; i < str2.length; i++) {
+  for (let i = 0; i < str2.length; i++) {
     if (i === str2.length - 1 && j < str1.length - 1) {
       // return false
       return false;
@@ -100,7 +100,7 @@ const binarySearch = function(arr, elem) {
   return arr[middle] === elem ? middle : -1;
 };
 
-function minSubArrayLen(nums, sum) {
+const minSubArrayLen = function(nums, sum) {
   let total = 0;
   let start = 0;
   let end = 0;
@@ -127,7 +127,30 @@ function minSubArrayLen(nums, sum) {
     }
   }
   return minLen === Infinity ? 0 : minLen;
-}
+};
+
+const bubbleSort = function(arr) {
+  let temp;
+  let noSwaps;
+  // loop backwards from array length
+  for (let i = arr.length - 1; i > 0; i--) {
+    noSwaps = true;
+    // loop over unsorted section of array. anything greater than i has already been sorted
+    for (let j = 0; j < i - 1; j++) {
+      // if current element is greater than next element
+      if (arr[j] > arr[j + 1]) {
+        // swap elements
+        temp = arr[j];
+        arr[j] = arr[j + 1];
+        arr[j + 1] = temp;
+        noSwaps = false;
+      }
+      if (noSwaps) break;
+    }
+  }
+  // return sorted array
+  return arr;
+};
 
 module.exports = {
   sameFrequency,
@@ -135,5 +158,6 @@ module.exports = {
   isSubsequence,
   maxSubarraySum,
   binarySearch,
-  minSubArrayLen
+  minSubArrayLen,
+  bubbleSort
 };

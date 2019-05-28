@@ -4,7 +4,8 @@ const {
   isSubsequence,
   maxSubarraySum,
   binarySearch,
-  minSubArrayLen
+  minSubArrayLen,
+  bubbleSort
 } = require("./sort.js");
 
 describe("sameFrequency", () => {
@@ -73,6 +74,12 @@ describe("minSubArrayLen", () => {
   });
   test("Should return 0 if no sub array is greater than or equal to sum", () => {
     expect(minSubArrayLen([1, 2, 3, 4, 2, 5], 30)).toBe(0);
+  });
+});
+
+describe("bubbleSort", () => {
+  test("Should return a sorted array", () => {
+    expect(bubbleSort([4, 3, 1, 2, 5, 6])).toStrictEqual([1, 2, 3, 4, 5, 6]);
   });
 });
 
