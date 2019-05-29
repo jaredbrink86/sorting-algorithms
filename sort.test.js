@@ -6,7 +6,8 @@ const {
   binarySearch,
   minSubArrayLen,
   bubbleSort,
-  selectionSort
+  selectionSort,
+  insertionSort
 } = require("./sort.js");
 
 describe("sameFrequency", () => {
@@ -82,25 +83,86 @@ describe("bubbleSort", () => {
   test("Should return a sorted array", () => {
     expect(bubbleSort([4, 3, 1, 2, 5, 6])).toStrictEqual([1, 2, 3, 4, 5, 6]);
   });
+  test("Should sort an array with negative, and positive values", () => {
+    expect(bubbleSort([4, 3, 1, 2, 5, 6, -9, -7, 8])).toStrictEqual([
+      -9,
+      -7,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      8
+    ]);
+  });
+  test("Should return an empty array, if input is an empty array", () => {
+    expect(bubbleSort([])).toStrictEqual([]);
+  });
 });
 
 describe("selectionSort", () => {
   test("Should return a sorted array", () => {
     expect(selectionSort([4, 3, 1, 2, 5, 6])).toStrictEqual([1, 2, 3, 4, 5, 6]);
   });
+  test("Should sort an array with negative, and positive values", () => {
+    expect(selectionSort([4, 3, 1, 2, 5, 6, -9, -7, 8])).toStrictEqual([
+      -9,
+      -7,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      8
+    ]);
+  });
+  test("Should return an empty array, if input is an empty array", () => {
+    expect(selectionSort([])).toStrictEqual([]);
+  });
+});
+
+describe("insertionSort", () => {
+  test("Should return a sorted array", () => {
+    expect(insertionSort([4, 3, 1, 2, 5, 6])).toStrictEqual([1, 2, 3, 4, 5, 6]);
+  });
+  test("Should sort an array with negative, and positive values", () => {
+    expect(insertionSort([4, 3, 1, 2, 5, 6, -9, -7, 8])).toStrictEqual([
+      -9,
+      -7,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      8
+    ]);
+  });
+  test("Should return an empty array, if input is an empty array", () => {
+    expect(insertionSort([])).toStrictEqual([]);
+  });
 });
 
 describe("mergeSort", () => {
-  test("Should sort an array of numbers", () => {
-    expect(mergeSort([1, 3, 5, 2, 6, 8, 7, 4])).toBe([1, 2, 3, 4, 5, 6, 7, 8]);
-    test("Should sort an array of characters alphabetically", () => {
-      expect(mergeSort(["b", "c", "a", "z", "p"])).toBe([
-        "a",
-        "b",
-        "c",
-        "p",
-        "z"
-      ]);
-    });
+  test("Should return a sorted array", () => {
+    expect(mergeSort([4, 3, 1, 2, 5, 6])).toStrictEqual([1, 2, 3, 4, 5, 6]);
+  });
+  test("Should sort an array with negative, and positive values", () => {
+    expect(mergeSort([4, 3, 1, 2, 5, 6, -9, -7, 8])).toStrictEqual([
+      -9,
+      -7,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      8
+    ]);
+  });
+  test("Should return an empty array, if input is an empty array", () => {
+    expect(mergeSort([])).toStrictEqual([]);
   });
 });

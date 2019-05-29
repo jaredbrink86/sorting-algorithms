@@ -129,28 +129,43 @@ const minSubArrayLen = function(nums, sum) {
   return minLen === Infinity ? 0 : minLen;
 };
 
+///////////////////////////////////////////////////////////////////////////////
+// Bubble sort will compare each element to the next,                        //
+// determine if the next element is greater than the current,                //
+// and swap the elements if it is greater. This causes the largest           //
+// elements to 'bubble up' to the end of the array, until sorted. O(n^2)     //
+///////////////////////////////////////////////////////////////////////////////
+
 const bubbleSort = function(arr) {
   let temp;
   let noSwaps;
   // loop backwards from array length
-  for (let i = arr.length - 1; i > 0; i--) {
-    noSwaps = true;
+  for (let i = arr.length; i > 0; i--) {
     // loop over unsorted section of array. anything greater than i has already been sorted
     for (let j = 0; j < i - 1; j++) {
       // if current element is greater than next element
       if (arr[j] > arr[j + 1]) {
-        // swap elements
+        // swap elements and declare swap has been made
         temp = arr[j];
         arr[j] = arr[j + 1];
         arr[j + 1] = temp;
         noSwaps = false;
       }
-      if (noSwaps) break;
     }
+    // if no swaps were made, no point break out of loop.
+    if (noSwaps) break;
   }
   // return sorted array
   return arr;
 };
+
+///////////////////////////////////////////////////////////////////////////////
+// Selection sort will iterate through the array. On each iteration, it will //
+// find the minimum value, and swap it with the current element, unless      //
+// the current element is in fact the minimum value. This will cause the     //
+// smallest values to sort of sink to their proper position in the array     //
+// O(n^2)                                                                    //
+///////////////////////////////////////////////////////////////////////////////
 
 const selectionSort = function(arr) {
   let temp;
@@ -175,6 +190,35 @@ const selectionSort = function(arr) {
   return arr;
 };
 
+///////////////////////////////////////////////////////////////////////////////
+// Insertion sort builds up a sorted portion of the array, by inserting one  //
+// item at a time, into its proper place. Compare each element to all        //
+// previous elements, and swaps if needed.                                   //
+///////////////////////////////////////////////////////////////////////////////
+
+// const insertionSort = function(arr) {
+//   for (let i = 1; i < arr.length; i++) {
+//     for (let j = i; j > 0; j--) {
+//       if (arr[j] < arr[j - 1]) {
+//         [arr[j], arr[j - 1]] = [arr[j - 1], arr[j]];
+//       }
+//     }
+//   }
+//   return arr;
+// };
+
+const insertionSort = function(arr) {
+  let currentVal;
+  for (let i = 1; i < arr.length; i++) {
+    currentVal = arr[i];
+    for (var j = i - 1; j >= 0 && arr[j] > currentVal; j--) {
+      arr[j + 1] = arr[j];
+    }
+    arr[j + 1] = currentVal;
+  }
+  return arr;
+};
+
 module.exports = {
   sameFrequency,
   areThereDuplicates,
@@ -183,5 +227,6 @@ module.exports = {
   binarySearch,
   minSubArrayLen,
   bubbleSort,
-  selectionSort
+  selectionSort,
+  insertionSort
 };
