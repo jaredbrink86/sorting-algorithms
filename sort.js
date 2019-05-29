@@ -134,6 +134,7 @@ const minSubArrayLen = function(nums, sum) {
 // determine if the next element is greater than the current,                //
 // and swap the elements if it is greater. This causes the largest           //
 // elements to 'bubble up' to the end of the array, until sorted. O(n^2)     //
+// Works very well with nearly sorted data.                                  //
 ///////////////////////////////////////////////////////////////////////////////
 
 const bubbleSort = function(arr) {
@@ -164,7 +165,7 @@ const bubbleSort = function(arr) {
 // find the minimum value, and swap it with the current element, unless      //
 // the current element is in fact the minimum value. This will cause the     //
 // smallest values to sort of sink to their proper position in the array     //
-// O(n^2)                                                                    //
+// O(n^2) Not great for nearly sorted.                                                                   //
 ///////////////////////////////////////////////////////////////////////////////
 
 const selectionSort = function(arr) {
@@ -193,29 +194,31 @@ const selectionSort = function(arr) {
 ///////////////////////////////////////////////////////////////////////////////
 // Insertion sort builds up a sorted portion of the array, by inserting one  //
 // item at a time, into its proper place. Compare each element to all        //
-// previous elements, and swaps if needed.                                   //
+// previous elements. Shift elements that are greater than current to the    //
+// right, until correct place is found. Then insert into correct place.      //
+// Works well on nearly sorted data. Also works well when adding new data    //
 ///////////////////////////////////////////////////////////////////////////////
 
-// const insertionSort = function(arr) {
-//   for (let i = 1; i < arr.length; i++) {
-//     for (let j = i; j > 0; j--) {
-//       if (arr[j] < arr[j - 1]) {
-//         [arr[j], arr[j - 1]] = [arr[j - 1], arr[j]];
-//       }
-//     }
-//   }
-//   return arr;
-// };
-
 const insertionSort = function(arr) {
+  // declare current val
   let currentVal;
+  // loop through arr length starting at 1
   for (let i = 1; i < arr.length; i++) {
+    // store current val
     currentVal = arr[i];
-    for (var j = i - 1; j >= 0 && arr[j] > currentVal; j--) {
-      arr[j + 1] = arr[j];
+    // loop backward through sorted portion of array starting at i - 1
+    for (var j = i - 1; j >= 0; j--) {
+      // while current val is less than inner loop val, otherwise break loop
+      if (currentVal < arr[j]) {
+        arr[j + 1] = arr[j];
+      } else {
+        break;
+      }
     }
+    // set arr at j + 1 to current value.
     arr[j + 1] = currentVal;
   }
+  // return sorted array
   return arr;
 };
 
