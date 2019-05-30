@@ -194,7 +194,7 @@ const selectionSort = function(arr) {
 ///////////////////////////////////////////////////////////////////////////////
 // Insertion sort builds up a sorted portion of the array, by inserting one  //
 // item at a time, into its proper place. Compare each element to all        //
-// previous elements. Shift elements that are greater than current to the    //
+// previous elements. Move elements that are greater than current to the     //
 // right, until correct place is found. Then insert into correct place.      //
 // Works well on nearly sorted data. Also works well when adding new data    //
 ///////////////////////////////////////////////////////////////////////////////
@@ -222,6 +222,37 @@ const insertionSort = function(arr) {
   return arr;
 };
 
+const merge = function(arr1, arr2) {
+  // set firstArrIndex variable to 0
+  let i = 0;
+  // set secondArrIndex variable to 0
+  let j = 0;
+  // set result variable to empty array
+  let result = [];
+  // declare longest variable
+  let longest;
+  // declare shortest variable
+  let shortest;
+  if (arr1.length > arr2.length) {
+    longest = arr1;
+    shortest = arr2;
+  } else {
+    longest = arr2;
+    shortest = arr1;
+  }
+  // while there are still elements to look at
+  while (i < longest.length) {
+    if (longest[i] < shortest[j] || j >= shortest.length) {
+      result.push(longest[i]);
+      i++;
+    } else {
+      result.push(shortest[j]);
+      j++;
+    }
+  }
+  return result;
+};
+
 module.exports = {
   sameFrequency,
   areThereDuplicates,
@@ -231,5 +262,6 @@ module.exports = {
   minSubArrayLen,
   bubbleSort,
   selectionSort,
-  insertionSort
+  insertionSort,
+  merge
 };
