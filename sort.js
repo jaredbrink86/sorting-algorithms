@@ -245,6 +245,7 @@ const merge = function(arr1, arr2) {
   }
   return results;
 };
+
 // const merge = function(arr1, arr2) {
 //   // set firstArrIndex variable to 0
 //   let i = 0;
