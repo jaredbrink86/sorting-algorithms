@@ -8,7 +8,8 @@ const {
   bubbleSort,
   selectionSort,
   insertionSort,
-  merge
+  merge,
+  mergeSort
 } = require("./sort.js");
 
 describe("sameFrequency", () => {
@@ -157,6 +158,19 @@ describe("merge", () => {
       6,
       7,
       8
+    ]);
+  });
+  test("Should merge two sorted arrays of different lengths", () => {
+    expect(merge([1, 3, 5, 7], [2, 4, 6, 8, 10])).toStrictEqual([
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      10
     ]);
   });
 });

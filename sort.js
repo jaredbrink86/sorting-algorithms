@@ -223,34 +223,67 @@ const insertionSort = function(arr) {
 };
 
 const merge = function(arr1, arr2) {
-  // set firstArrIndex variable to 0
+  let results = [];
   let i = 0;
-  // set secondArrIndex variable to 0
   let j = 0;
-  // set result variable to empty array
-  let result = [];
-  // declare longest variable
-  let longest;
-  // declare shortest variable
-  let shortest;
-  if (arr1.length > arr2.length) {
-    longest = arr1;
-    shortest = arr2;
-  } else {
-    longest = arr2;
-    shortest = arr1;
-  }
-  // while there are still elements to look at
-  while (i < longest.length) {
-    if (longest[i] < shortest[j] || j >= shortest.length) {
-      result.push(longest[i]);
+  while (i < arr1.length && j < arr2.length) {
+    if (arr2[j] >= arr1[i]) {
+      results.push(arr1[i]);
       i++;
     } else {
-      result.push(shortest[j]);
+      results.push(arr2[j]);
       j++;
     }
   }
-  return result;
+  while (i < arr1.length) {
+    results.push(arr1[i]);
+    i++;
+  }
+  while (j < arr2.length) {
+    results.push(arr2[j]);
+    j++;
+  }
+  return results;
+};
+// const merge = function(arr1, arr2) {
+//   // set firstArrIndex variable to 0
+//   let i = 0;
+//   // set secondArrIndex variable to 0
+//   let j = 0;
+//   // set result variable to empty array
+//   let result = [];
+//   // declare longest variable
+//   let longest;
+//   // declare shortest variable
+//   let shortest;
+//   // set longest and shortest according to which array is longer
+//   if (arr1.length > arr2.length) {
+//     longest = arr1;
+//     shortest = arr2;
+//   } else {
+//     longest = arr2;
+//     shortest = arr1;
+//   }
+//   // while loop until end of longest is reached
+//   while (i < longest.length) {
+//     // compare elements at i and j and push the lower element. If sortest array is finished, push the rest of longest array
+//     if (shortest[j] >= longest[i] || j >= shortest.length) {
+//       result.push(longest[i]);
+//       i++;
+//     } else {
+//       result.push(shortest[j]);
+//       j++;
+//     }
+//   }
+//   return result;
+// };
+
+const mergeSort = function(arr) {
+  if (arr.length <= 1) return arr;
+  let mid = Math.floor(arr.length / 2);
+  let left = mergeSort(arr.slice(0, mid));
+  let right = mergeSort(arr.slice(mid));
+  return merge(left, right);
 };
 
 module.exports = {
@@ -263,5 +296,6 @@ module.exports = {
   bubbleSort,
   selectionSort,
   insertionSort,
-  merge
+  merge,
+  mergeSort
 };
