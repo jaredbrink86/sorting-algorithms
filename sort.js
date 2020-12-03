@@ -136,7 +136,24 @@ const minSubArrayLen = function(nums, sum) {
 // elements to 'bubble up' to the end of the array, until sorted. O(n^2)     //
 // Works very well with nearly sorted data.                                  //
 ///////////////////////////////////////////////////////////////////////////////
+const bubbleSort = function(arr) {
+  for(var i = arr.length; i > 0; i--) {
+    for(var j = 0; j < i - 1; j++) {
+      if(arr[j] > arr[j+1]) {
+        swap(arr, j, j+1)
+      }
+    }
+  }
+  return arr
+}
 
+const swap = function(arr, idx1, idx2) {
+  var temp = arr[idx1]
+  arr[idx1] = arr[idx2]
+  arr[idx2] = temp
+}
+
+//Optimized
 const bubbleSort = function(arr) {
   let temp;
   let noSwaps;
@@ -145,6 +162,7 @@ const bubbleSort = function(arr) {
     // loop over unsorted section of array. anything greater than i has already been sorted
     for (let j = 0; j < i - 1; j++) {
       // if current element is greater than next element
+      noSwaps = true
       if (arr[j] > arr[j + 1]) {
         // swap elements and declare swap has been made
         temp = arr[j];
@@ -193,9 +211,9 @@ const selectionSort = function(arr) {
 
 ///////////////////////////////////////////////////////////////////////////////
 // Insertion sort builds up a sorted portion of the array, by inserting one  //
-// item at a time, into its proper place. Compare each element to all        //
+// item at a time into its proper place. Compare each element to all        //
 // previous elements. Move elements that are greater than current to the     //
-// right, until correct place is found. Then insert into correct place.      //
+// right until correct place is found, then insert into correct place.      //
 // Works well on nearly sorted data. Also works well when adding new data    //
 ///////////////////////////////////////////////////////////////////////////////
 
